@@ -13,4 +13,14 @@ class PurchasedCourse extends Model
         'user_id',
         'course'
     ];
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        $this->hasOne(Course::class);
+    }
 }

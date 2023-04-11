@@ -13,7 +13,7 @@ class Course extends Model
         'title',
         'code',
         'department',
-        'faculty',
-        'credit_unit',
+        'price',
+        'image'
     ];
 }

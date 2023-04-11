@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Department extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'amount',
-        'item'
+        'name',
+        'faculty_id'
     ];
 
-    public function item()
+    public function faculty()
     {
-        return $this->hasOne(Course::class, 'item');
+        $this->belongsTo(Faculty::class);
     }
 }

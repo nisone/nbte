@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Department;
+use App\Models\Faculty;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoursesTable extends Migration
+class CreateDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,10 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->string('code')->unique();
-            $table->double('price');
-            $table->string('image');
-            $table->foreignIdFor(Department::class, 'department');
+            $table->string('name')->unique();
+            $table->foreignIdFor(Faculty::class, 'faculty_id');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('departments');
     }
 }

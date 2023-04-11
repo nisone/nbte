@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +49,8 @@ class AuthController extends BaseController
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $success['name'] =  $user->name;
 
-            return $this->sendResponse($success, 'User login successfully.');
+            \Cart::session($user->id);
+            return $this->sendResponse([\Cart::getContent(), $success], 'User login successfully.');
         } else {
             return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
         }
